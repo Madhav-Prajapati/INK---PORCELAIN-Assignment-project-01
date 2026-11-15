@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INK + PORCELAIN</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
+    <style>
+        .wrap {
+            margin-inline: auto;
+            max-width: 1362px;
+        }
+
+        @media (min-width: 768px) {
+            .wrap {
+                padding-inline: 2rem;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .wrap {
+                padding-inline: 0;
+            }
+        }
+
+        .slider-track {
+            --vis: 3;
+            --gap: 16px;
+            --step: calc((100% + var(--gap)) / var(--vis));
+            display: flex;
+            gap: var(--gap);
+            animation: step-slide 18s infinite ease-in-out;
+        }
+
+        @media (min-width: 768px) {
+            .slider-track {
+                --vis: 7;
+                --gap: 14px;
+            }
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slide-item {
+            flex: 0 0 calc((100% - (var(--vis) - 1) * var(--gap)) / var(--vis));
+        }
+
+        @keyframes step-slide {
+
+            0%,
+            12% {
+                transform: translateX(0);
+            }
+
+            16.66%,
+            28.66% {
+                transform: translateX(calc(var(--step) * -1));
+            }
+
+            33.33%,
+            45.33% {
+                transform: translateX(calc(var(--step) * -2));
+            }
+
+            50%,
+            62% {
+                transform: translateX(calc(var(--step) * -3));
+            }
+
+            66.66%,
+            78.66% {
+                transform: translateX(calc(var(--step) * -4));
+            }
+
+            83.33%,
+            95.33% {
+                transform: translateX(calc(var(--step) * -5));
+            }
+
+            100% {
+                transform: translateX(calc(var(--step) * -6));
+            }
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden">
+    <!-- Top bar -->
+    <div class="h-6 bg-[#f9f6ed] text-center text-xs font-light leading-6">ORDERS SHIP IN 2-3 BUSINESS DAYS</div>
+
+    <!-- Navbar -->
+    <nav class="relative z-50 flex h-14 items-center justify-between bg-white px-5 lg:h-24 lg:px-16">
+        <!-- Logo -->
+        <div class="lg:flex-1">
+            <h1 class="text-lg font-light tracking-[0.2em] lg:text-2xl">INK + PORCELAIN</h1>
+        </div>
+        <ul class="hidden items-center gap-8 text-sm font-light uppercase lg:flex">
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Trade</a></li>
+            <li><a href="#">The Vault</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Stories</a></li>
+            <li><a href="#">The Edit</a></li>
+            <li><a href="#">Studio</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-5 lg:flex-1 lg:justify-end lg:gap-7">
+            <img src="./public/search.svg" alt="Search" class="h-5 lg:h-6">
+            <a href="#" aria-label="Account" class="hidden lg:block"><i class="fa-regular fa-user text-xl"></i></a>
+            <img src="./public/bag.svg" alt="Bag" class="h-5 lg:h-6">
+
+            <button id="menu-btn" aria-label="Open menu" aria-expanded="false" class="relative h-6 w-6 lg:hidden">
+                <img id="icon-open" src="./public/burgur.svg" alt="" class="absolute inset-0 m-auto h-5">
+                <svg id="icon-close" class="absolute inset-0 m-auto hidden h-6 w-6" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <path d="M4 4L20 20M20 4L4 20" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+    <div id="menu-panel"
+        class="invisible fixed inset-0 z-40 flex -translate-y-full flex-col justify-between overflow-y-auto bg-[#fbf9f6] px-7 pb-8 pt-24 transition-[transform,visibility] duration-500 ease-in-out lg:hidden">
+        <ul class="space-y-8 text-xs font-light uppercase tracking-wide">
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Trade</a></li>
+            <li><a href="#">The Vault</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Stories</a></li>
+            <li><a href="#">The Edit</a></li>
+            <li><a href="#">Studio</a></li>
+        </ul>
+
+        <div>
+            <form class="mt-12 px-1" onsubmit="event.preventDefault()">
+                <p class="text-xs font-light uppercase tracking-[0.2em]">Join our newsletter</p>
+                <input type="email" required aria-label="Email"
+                    class="mt-10 w-full border-0 border-b border-black bg-transparent py-2 text-sm focus:outline-none">
+                <button type="submit" class="mt-6 text-xs font-light uppercase tracking-wide">Submit</button>
+            </form>
+
+            <div class="mt-16 flex items-center justify-between text-xs font-light uppercase tracking-wide">
+                <a href="#">Instagram</a>
+                <span class="text-[8px] tracking-widest">I + P</span>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative h-[70vh] min-h-[420px] w-full md:h-[85vh]">
+            <img src="./public/backgroundimg.jpg" alt="" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div
+                class="relative flex h-full flex-col justify-center px-6 text-white md:items-center md:justify-end md:px-0 md:pb-[10%] md:text-center">
+                <h1 class="text-xl md:text-2xl md:tracking-[0.15em]">A DESIGN + CURATION PLATFORM</h1>
+                <a href="#" class="mt-4 text-sm leading-8 md:text-base">
+                    <span class="md:border-b md:border-white">SHOP OUR COLLECTION OF</span> <br>
+                    <span class="md:border-b md:border-white">ARTFUL OBJECTS DESIGNED BY WOMEN</span>
+                </a>
+            </div>
+        </section>
+        <section class="md:border-b md:border-gray-200">
+            <div class="wrap md:grid md:grid-cols-2">
+                <!-- Collection -->
+                <div class="px-5 pt-12 md:flex md:flex-col md:items-start md:border-r md:border-gray-200 md:px-[60px] md:py-20">
+                    <h3 class="text-sm font-light tracking-[0.15em] text-gray-500 md:text-xs">THE COLLECTION</h3>
+                    <p class="mt-3 text-xl md:flex-1 md:text-3xl md:font-light">Artful Objects Designed by Women</p>
+                    <button class="mt-5 border-b border-black py-3 text-sm md:mt-8 md:py-1">SHOP THE COLLECTION</button>
+                    <hr class="mt-6 border-gray-300 md:hidden">
+                </div>
+
+                <!-- Trade -->
+                <div class="px-5 pt-6 md:flex md:flex-col md:items-start md:px-[60px] md:py-20">
+                    <h3 class="text-sm font-light tracking-[0.15em] text-gray-500 md:text-xs">FOR DESIGN PROFESSIONALS</h3>
+                    <p class="mt-3 text-xl md:flex-1 md:text-3xl md:font-light">Trade pricing, quotes and sourcing for your projects</p>
+                    <button class="mt-5 border-b border-black py-3 text-sm md:mt-8 md:py-1">DESIGNER TRADE PROGRAM</button>
+                    <hr class="mt-6 border-gray-300 md:hidden">
+                </div>
+            </div>
+        </section>
+
+        <section class="wrap md:grid md:grid-cols-2 md:items-center md:pt-6">
+            <img src="./public/flawor-pots.jpg" alt="" class="aspect-square w-full object-cover p-5 md:p-0">
+            <div class="px-5 pb-3 md:px-11 md:pb-0">
+                <h3 class="text-2xl font-medium md:font-light md:tracking-[0.12em]">THE VESTA LAMP COLLECTION</h3>
+                <p class="mt-5 text-sm font-light md:max-w-xl md:text-base">
+                    Our first collection of ceramic lighting, an exclusive collaboration with Canoa Lab.
+                    Handmade in Spain, each lamp holds its presence as a sculpture even before it is lit.
+                    In Ink, Cream, Bufalo and Terracotta.
+                </p>
+                <button class="mt-5 border-b border-black py-2 text-sm">SHOP LIGHTING</button>
+            </div>
+        </section>
+
+        <!-- Stories (desktop: 3 columns) -->
+        <section>
+            <h1 class="mb-3 mt-10 text-center text-xl md:mb-14 md:mt-24 md:text-2xl md:tracking-[0.15em]">READ THE LATEST STORIES</h1>
+
+            <div class="wrap md:grid md:grid-cols-3 md:gap-10">
+                <article>
+                    <img src="./public/sofa.jpg" alt="" class="aspect-square w-full object-cover p-5 md:p-0">
+                    <div class="px-5 pb-3 md:px-0 md:pt-8">
+                        <h3 class="text-gray-950 md:tracking-wide">
+                            SPACES SHAPED BY VISION: THE INK + PORCELAIN DESIGNER TRADE MEMBERS
+                        </h3>
+                        <p class="mt-5 text-sm font-light md:mt-4">
+                            At INK + PORCELAIN, we're inspired by a curated community of designers whose thoughtful,
+                            distinctive work continues to shape the language of contemporary interiors.
+                        </p>
+                        <button class="mt-5 border-b border-black py-2 text-sm">READ MORE</button>
+                    </div>
+                </article>
+
+                <article>
+                    <img src="./public/black-pot.jpg" alt="" class="aspect-square w-full object-cover p-5 md:p-0">
+                    <div class="px-5 pb-3 md:px-0 md:pt-8">
+                        <h3 class="text-gray-950 md:tracking-wide">INTRODUCING THE LATCH KEY: FORMS THAT HOLD PRESENCE</h3>
+                        <p class="mt-5 text-sm font-light md:mt-4">
+                            After a sold-out release in The Vault, our newest collection by artist Whitney Sharp
+                            of The Latch Key is now available.
+                        </p>
+                        <button class="mt-5 border-b border-black py-2 text-sm">READ MORE</button>
+                    </div>
+                </article>
+
+                <article>
+                    <img src="./public/women-seating-on-maze.png" alt="" class="aspect-square w-full object-cover p-5 md:p-0">
+                    <div class="px-5 pb-3 md:px-0 md:pt-8">
+                        <h3 class="text-gray-950 md:tracking-wide">6 THINGS WITH INTERIOR STYLIST RACHEL FORSLUND</h3>
+                        <p class="mt-5 text-sm font-light md:mt-4">
+                            We're delighted to announce our partnership with interior stylist Rachel Forslund.
+                            Driven by storytelling, Rachel orchestrates color, texture, and composition into
+                            captivating spaces.
+                        </p>
+                        <button class="mt-5 border-b border-black py-2 text-sm">READ MORE</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="flex justify-center">
+                <button class="mt-8 border-b border-black py-2 text-sm md:mt-16">VIEW ALL STORIES</button>
+            </div>
+        </section>
+        <section class="relative mt-16 aspect-square w-full md:mt-24 md:aspect-auto md:h-[85vh]">
+            <img src="./public/bottom-background.jpg" alt="" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-black/30 md:bg-black/15"></div>
+            <div class="wrap relative flex h-full flex-col items-start justify-end p-6 text-white md:justify-start md:p-0 md:pt-28">
+                <h3 class="text-xl md:text-2xl md:tracking-[0.15em]">JOIN OUR DESIGNER TRADE <br class="md:hidden"> PROGRAM</h3>
+                <p class="mt-4 text-sm md:max-w-xl">
+                    We are dedicated to collaborating with interior designers, stylists, artists, and members of
+                    the design industry to display our collection of Artful Objects Designed by Women in homes
+                    and living spaces worldwide.
+                </p>
+                <button class="mt-5 border-b border-white py-2 text-sm font-medium">LEARN MORE</button>
+            </div>
+        </section>
+
+        <!-- As seen in -->
+        <section class="wrap px-5 md:px-8">
+            <h1
+                class="mb-8 mt-10 text-center text-lg font-medium uppercase tracking-[0.25em] text-neutral-800 md:mb-12 md:mt-20 md:text-xl md:font-light">
+                AS SEEN IN
+            </h1>
+            <img src="./public/brand-logos.png" alt="" class="mx-auto w-full md:pb-12">
+        </section>
+
+        <!-- Home edit -->
+        <section class="relative mt-10 aspect-square w-full md:mt-0 md:aspect-[2/1]">
+            <img src="./public/footer-img.jpg" alt="" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-black/30 md:bg-black/10"></div>
+            <div class="relative flex h-full flex-col items-start justify-end p-6 text-white md:justify-start md:px-16 md:pt-[11%]">
+                <h1 class="text-xl md:text-2xl md:tracking-[0.15em]">EXPLORE THE HOME EDIT</h1>
+                <p class="mt-3 text-sm md:max-w-2xl">
+                    Delve into a curated selection of interior essentials: artful home decor, functional
+                    furniture, and our top picks for coffee table books.
+                </p>
+            </div>
+        </section>
+
+        <!-- Instagram slider -->
+        <section class="w-full bg-white py-10 md:py-16">
+            <h2 class="mb-8 text-center text-lg font-medium uppercase tracking-[0.25em] text-neutral-800 md:mb-10 md:text-xl md:font-light">
+                @INKANDPORCELAIN
+            </h2>
+            <div class="w-full px-2 md:px-0">
+                <div class="overflow-hidden">
+                    <div class="slider-track">
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img1.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img2.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img3.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img4.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img5.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img6.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <!-- copy of images -->
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img1.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img2.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img3.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img4.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img5.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img6.jpg" alt="" class="h-full w-full object-cover"></div>
+                        <div class="slide-item aspect-square overflow-hidden"><img src="./public/img1.jpg" alt="" class="h-full w-full object-cover"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (desktop: links left, newsletter right) -->
+    <footer class="w-full bg-[#f6f3ed] text-neutral-800">
+        <div class="wrap lg:flex lg:justify-between lg:gap-16 lg:py-16">
+            <!-- Link columns -->
+            <div class="grid grid-cols-2 gap-x-6 gap-y-8 px-9 pt-10 md:grid-cols-4 md:px-0 lg:flex lg:gap-10 lg:pt-0">
+                <div>
+                    <h4 class="text-xs font-light uppercase tracking-[0.2em] text-gray-500">Trade</h4>
+                    <ul class="mt-5 space-y-3 text-sm font-light uppercase tracking-wide">
+                        <li><a href="#">Trade Program</a></li>
+                        <li><a href="#">Trade Quote</a></li>
+                        <li><a href="#">Rentals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-light uppercase tracking-[0.2em] text-gray-500">Work With Us</h4>
+                    <ul class="mt-5 space-y-3 text-sm font-light uppercase tracking-wide">
+                        <li><a href="#">Concierge</a></li>
+                        <li><a href="#">Artists</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-light uppercase tracking-[0.2em] text-gray-500">Policies</h4>
+                    <ul class="mt-5 space-y-3 text-sm font-light uppercase tracking-wide">
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-light uppercase tracking-[0.2em] text-gray-500">Follow</h4>
+                    <ul class="mt-5 space-y-3 text-sm font-light uppercase tracking-wide">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <form class="px-6 pt-16 md:px-0 lg:w-1/2 lg:max-w-[640px] lg:pt-0" onsubmit="event.preventDefault()">
+                <p class="px-1 text-sm font-light uppercase leading-snug tracking-wide md:px-0">
+                    Sign up to the Design Letter and enjoy 10% off your first order
+                </p>
+                <div class="mt-8 md:flex md:items-center md:gap-6">
+                    <input type="email" placeholder="Enter your email" required
+                        class="w-full border-0 border-b border-gray-300 bg-transparent px-1 py-3 text-sm font-light placeholder:text-gray-500 focus:border-black focus:outline-none md:flex-1">
+                    <div class="flex justify-center">
+                        <button type="submit"
+                            class="mt-6 py-2 text-sm font-light uppercase tracking-[0.15em] md:mt-0">Subscribe</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-16 border-t border-gray-200 lg:mt-0">
+            <div class="wrap px-6 py-8 text-center md:text-left lg:py-10">
+                <p class="text-xs font-light uppercase tracking-wide">
+                    &copy; 2026 INK + PORCELAIN &ndash; All rights reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const panel = document.getElementById('menu-panel');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        function setMenu(open) {
+            if (open) window.scrollTo(0, 0);
+
+            panel.classList.toggle('-translate-y-full', !open);
+            panel.classList.toggle('invisible', !open);
+            iconOpen.classList.toggle('hidden', open);
+            iconClose.classList.toggle('hidden', !open);
+            document.body.classList.toggle('overflow-hidden', open);
+            btn.setAttribute('aria-expanded', open);
+            btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        }
+
+        btn.addEventListener('click', () => {
+            setMenu(btn.getAttribute('aria-expanded') !== 'true');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setMenu(false);
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) setMenu(false);
+        });
+    </script>
+</body>
+
+</html>
